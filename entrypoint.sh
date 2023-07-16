@@ -39,6 +39,8 @@ fi
 echo $MY_IP
 
 sed -i -e "s/MY_IP/$MY_IP/g" /etc/rtpengine.conf
+sed -i -e "s/LOCAL_IP/$LOCAL_IP/g" /etc/rtpengine.conf
+sed -i -e "s/PUBLIC_IP/$PUBLIC_IP/g" /etc/rtpengine.conf
 
 if [ "$1" = 'rtpengine' ]; then
   shift
