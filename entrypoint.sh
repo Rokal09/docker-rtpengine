@@ -3,6 +3,8 @@ set -e
 
 PATH=/usr/local/bin:$PATH
 
+CLOUD=aws
+
 case $CLOUD in
   gcp)
     LOCAL_IP=$(curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/ip)
@@ -33,6 +35,8 @@ if [ -n "$PUBLIC_IP" ]; then
 else
   MY_IP=`ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'`
 fi
+
+echo $MY_IP
 
 sed -i -e "s/MY_IP/$MY_IP/g" /etc/rtpengine.conf
 
